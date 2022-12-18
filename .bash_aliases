@@ -1,9 +1,5 @@
 #!/bin/bash
 
-################################################################################
-######################## Linux (Mint) specific aliases #########################
-################################################################################
-
 # enable aliases to be sudoed
 alias sudo='sudo '
 
@@ -62,6 +58,7 @@ alias dt='cd ~/Desktop'
 alias db='cd ~/Dropbox'
 alias dk='cd ~/Dokumente'
 alias ab='cd ~/Dropbox/Ablage'
+alias tf='cd ~/Transfer'
 
 # navigation aliases
 alias cd..='cd ..'
@@ -191,6 +188,7 @@ nwp ()
 
 # Snippets
 # if [ "$HOSTNAME" == "T460" ]; then
+# fi
 
 ################################################################################
 
