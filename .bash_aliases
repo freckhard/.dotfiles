@@ -137,6 +137,7 @@ if [[ "$(< /proc/version)" == *@(Microsoft|microsoft|WSL|wsl)* ]]; then
 export LS_COLORS=$LS_COLORS:'ow=1;34:';
 
 # windows specific aliases
+alias d='cd /mnt/d/'
 alias e='explorer.exe .'
 alias xclip='clip.exe'
 alias xpaste='PowerShell.exe Get-Clipboard'
