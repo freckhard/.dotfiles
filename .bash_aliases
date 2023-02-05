@@ -103,6 +103,7 @@ alias dupli='python3 $HOME/Workspace/dupli_finder/dupli_finder.py'
 
 # typocorrection
 alias mdkir='mkdir'
+alias sudu='sudo '
 
 ################################################################################
 ######################## Linux (Mint) specific aliases #########################
@@ -114,6 +115,9 @@ if [[ "$(< /proc/version)" != *@(Microsoft|microsoft|WSL|wsl)* ]]; then
 alias rewe='python3 $HOME/Workspace/rewe_tools/rewe_tools.py'
 alias rewedl='python3 $HOME/Workspace/rewe_tools/rewe_mails.py'
 alias rewedir='cd $HOME/Dropbox/Dokumente/Familie/$(date +%Y)/REWE'
+
+# clipboard simplifications
+alias xpaste="xclip -o"
 
 # wifi os specific tools
 alias wifis='sudo python3 ~/Workspace/read_wifis_linux/read_wifis_linux.py'

@@ -12,7 +12,7 @@ esac
 # See bash(1) for more options
 #HISTCONTROL=ignoreboth
 HISTCONTROL=ignorespace
-HISTIGNORE='l:ls:ll:ö:ä:ü:history'
+HISTIGNORE='c:bedit:bref:b:goup:yt-dlp:rm:l:ls:ll:ö:ä:ü:history'
 
 # append to the history file, don't overwrite it
 shopt -s histappend
