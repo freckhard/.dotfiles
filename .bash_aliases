@@ -41,11 +41,11 @@ alias dgab='dga ~/.bash_aliases'
 
 # list options
 alias ls='ls -v --color=auto'
-alias l='ls -lh --time-style="+[%Y-%m-%d] [%H:%M:%S]"'
+alias l='ls -lh --time-style="+[%Y-%m-%d] [%H:%M:%S]" --group-directories-first'
 alias la='l -A'
 alias lr='l -R'
 alias lt='l -t'
-alias ll='ls -lh --time-style="+[%Y-%m-%d] [%H:%M:%S]" --group-directories-first'
+alias ll='ls -lh --time-style="+[%Y-%m-%d] [%H:%M:%S]"'
 alias lla='ll -A'
 alias llr='ll -R'
 alias llt='lt -r'
