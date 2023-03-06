@@ -202,9 +202,14 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# load seperate work related aliases
+# load separate work related aliases
 if [ -f ~/.work_aliases ]; then
 	. ~/.work_aliases
+fi
+
+# load autojump navigation functionalities
+if [ -f /usr/share/autojump/autojump.sh ]; then
+        . /usr/share/autojump/autojump.sh
 fi
 
 ################################################################################
