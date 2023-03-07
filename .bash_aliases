@@ -77,7 +77,8 @@ alias xedit='xed ~/.bash_aliases'
 alias bref='clear && exec bash'
 alias b='bref'
 
-# aliases for updating via apt, pip and pip itself
+# aliases for updating via apt, nala, pip and pip itself
+alias nup='sudo nala upgrade'
 alias goup='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade'
 alias goupx='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade -y && exit'
 alias pipup='/usr/bin/python3 -m pip install --upgrade pip'
@@ -105,6 +106,7 @@ alias dupli='python3 $HOME/Workspace/dupli_finder/dupli_finder.py'
 alias mdkir='mkdir'
 alias sudu='sudo '
 
+
 ################################################################################
 ######################## Linux (Mint) specific aliases #########################
 ################################################################################
@@ -131,6 +133,7 @@ alias wwan0='nmcli radio wwan off'
 
 fi
 
+
 ################################################################################
 ######################## WSL specific aliases ##################################
 ################################################################################
@@ -154,6 +157,7 @@ function npp()
 }
 
 fi
+
 
 ################################################################################
 
@@ -189,30 +193,43 @@ nwp ()
         git init
     }
 
+
 ################################################################################
 
 # Snippets
 # if [ "$HOSTNAME" == "T460" ]; then
 # fi
 
+
 ################################################################################
+# Loaders section of different things, like paths, initialisers and evals
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# load separate work related aliases
+# load separate work related aliases if it exists
 if [ -f ~/.work_aliases ]; then
 	. ~/.work_aliases
 fi
 
-# load autojump navigation functionalities
+# load autojump navigation functionalities if installed
 if [ -f /usr/share/autojump/autojump.sh ]; then
         . /usr/share/autojump/autojump.sh
 fi
 
-################################################################################
+# load bash autocompletion for pipx isolated package installer
+which pipx > /dev/null && eval "$(register-python-argcomplete pipx)"
 
+
+################################################################################
 # exports
+
+# history appender, for a complete history when using more than one terminal
+# declard in this special way to be compatible with the autojump package
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} history -a"
+
+# necessary export for gpg-agent invocation
 export GPG_TTY=$(tty)
+
