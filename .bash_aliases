@@ -7,8 +7,13 @@ alias sudo='sudo '
 alias c='clear'
 alias q='exit'
 alias cp='cp -i'
-alias py='python3'
 alias g='git'
+
+# Python and python environment aliases
+alias py='python3'
+alias pyvenv='virtualenv venv'
+alias venvu='virtualenv --upgrade'
+alias venv='source venv/bin/activate'
 
 # git aliases
 alias gs='git status'
@@ -82,6 +87,7 @@ alias nup='sudo nala upgrade'
 alias goup='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade'
 alias goupx='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade -y && exit'
 alias pipup='/usr/bin/python3 -m pip install --upgrade pip'
+alias pipxup='pipx upgrade-all'
 alias pipu='pip freeze --user | cut -d"=" -f1 | xargs -n1 pip install -U'
 
 # specs, system tools and ip aliases
@@ -97,12 +103,15 @@ alias ncal='ncal -Mwb'
 alias kw='echo "KW "$(date +%V)'
 
 # python helper tools
-alias fd='py $HOME/Workspace/helper_tools/format_date.py'
+alias xfd='py $HOME/Workspace/helper_tools/format_date.py'
 alias abo='py $HOME/Workspace/helper_tools/ablage_organiser.py'
 alias trim='py $HOME/Workspace/helper_tools/trim_whitespaces.py'
 alias dupli='python3 $HOME/Workspace/dupli_finder/dupli_finder.py'
 
-# typocorrection
+# miscellaneous tools
+alias fd='fdfind'
+
+# typo correction
 alias mdkir='mkdir'
 alias sudu='sudo '
 
@@ -140,7 +149,7 @@ fi
 
 if [[ "$(< /proc/version)" == *@(Microsoft|microsoft|WSL|wsl)* ]]; then
 
-# getting rid of horibly highlighted folders in WSL
+# getting rid of horribly highlighted folders in WSL
 export LS_COLORS=$LS_COLORS:'ow=1;34:';
 
 # windows specific aliases
@@ -220,14 +229,14 @@ if [ -f /usr/share/autojump/autojump.sh ]; then
 fi
 
 # load bash autocompletion for pipx isolated package installer
-which pipx > /dev/null && eval "$(register-python-argcomplete pipx)"
+#which pipx > /dev/null && eval "$(register-python-argcomplete pipx)"
 
 
 ################################################################################
 # exports
 
 # history appender, for a complete history when using more than one terminal
-# declard in this special way to be compatible with the autojump package
+# declared in this special way to be compatible with the autojump package
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} history -a"
 
 # necessary export for gpg-agent invocation
