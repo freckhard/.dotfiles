@@ -110,6 +110,7 @@ alias dupli='python3 $HOME/Workspace/dupli_finder/dupli_finder.py'
 
 # miscellaneous tools
 alias fd='fdfind'
+alias bat='batcat'
 
 # typo correction
 alias mdkir='mkdir'
