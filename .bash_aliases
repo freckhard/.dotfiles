@@ -16,7 +16,7 @@ alias venvu='virtualenv --upgrade'
 alias venv='source venv/bin/activate'
 
 # git aliases
-alias gs='git status'
+alias gs='git status -u'
 alias ga='git add'
 alias gd='git ydiff -sw0'
 alias gc='git commit'
@@ -84,6 +84,7 @@ alias b='bref'
 
 # aliases for updating via apt, nala, pip and pip itself
 alias nup='sudo nala upgrade'
+alias nupy='sudo nala upgrade -y'
 alias goup='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade'
 alias goupx='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade -y && exit'
 alias pipup='/usr/bin/python3 -m pip install --upgrade pip'
@@ -218,6 +219,11 @@ nwp ()
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
+fi
+
+# set PATH so it includes rust's cargo bin if it exists
+if [ -d "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 # load separate work related aliases if it exists
