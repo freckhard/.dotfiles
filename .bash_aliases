@@ -11,9 +11,11 @@ alias g='git'
 
 # Python and python environment aliases
 alias py='python3'
-alias pyvenv='virtualenv venv'
+alias venvc='virtualenv venv'
 alias venvu='virtualenv --upgrade'
-alias venv='source venv/bin/activate'
+alias venv1='source venv/bin/activate'
+alias venv0='deactivate'
+alias venv='venv1'
 
 # git aliases
 alias gs='git status -u'
