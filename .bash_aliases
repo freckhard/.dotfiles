@@ -10,7 +10,7 @@ alias cp='cp -i'
 alias g='git'
 
 # Python and python environment aliases
-alias py='python3'
+alias py='ipython3'
 alias venvc='virtualenv venv'
 alias venvu='virtualenv --upgrade'
 alias venv1='source venv/bin/activate'
@@ -110,6 +110,7 @@ alias xfd='py $HOME/Workspace/helper_tools/format_date.py'
 alias abo='py $HOME/Workspace/helper_tools/ablage_organiser.py'
 alias trim='py $HOME/Workspace/helper_tools/trim_whitespaces.py'
 alias dupli='python3 $HOME/Workspace/dupli_finder/dupli_finder.py'
+alias windl='cd $HOME/Workspace/win10spotlight && python3 win10spotlight_downloader.py'
 
 # miscellaneous tools
 alias fd='fdfind'
