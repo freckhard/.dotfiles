@@ -121,17 +121,17 @@ alias t='tail -f'
 alias mdkir='mkdir'
 alias sudu='sudo '
 
+# helper tools
+alias rewe='python3 $HOME/Workspace/rewe_tools/rewe_tools.py'
+alias rewedl='python3 $HOME/Workspace/rewe_tools/rewe_mails.py'
+alias rewedir='cd $HOME/Dropbox/Dokumente/Familie/$(date +%Y)/REWE'
+
 
 ################################################################################
 ######################## Linux (Mint) specific aliases #########################
 ################################################################################
 
 if [[ "$(< /proc/version)" != *@(Microsoft|microsoft|WSL|wsl)* ]]; then
-
-# helper tools
-alias rewe='python3 $HOME/Workspace/rewe_tools/rewe_tools.py'
-alias rewedl='python3 $HOME/Workspace/rewe_tools/rewe_mails.py'
-alias rewedir='cd $HOME/Dropbox/Dokumente/Familie/$(date +%Y)/REWE'
 
 # clipboard simplifications
 alias xpaste="xclip -o"
@@ -208,6 +208,20 @@ nwp ()
         git init
     }
 
+# Function definition for fuzzy ripgrep-all finding
+rga-fzf() {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
+}
 
 ################################################################################
 
