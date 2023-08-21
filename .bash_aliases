@@ -58,6 +58,7 @@ alias llr='ll -R'
 alias llt='lt -r'
 alias lls='ls --group-directories-first'
 alias ld='ll -d */'
+alias lda='la -d .*/'
 
 # directory aliases
 alias dl='cd ~/Downloads'
@@ -254,8 +255,8 @@ if [ -f /usr/share/autojump/autojump.sh ]; then
 fi
 
 # load bash autocompletion for pipx isolated package installer
-#which pipx > /dev/null && eval "$(register-python-argcomplete pipx)"
-
+command -v pipx > /dev/null && eval "$(register-python-argcomplete3 pipx)"
+command -v zoxide > /dev/null && eval "$(zoxide init bash)"
 
 ################################################################################
 # exports
