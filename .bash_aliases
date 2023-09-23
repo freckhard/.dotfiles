@@ -93,6 +93,7 @@ alias goupx='sudo apt update && echo && apt list --upgradable && echo && sudo ap
 alias pipup='/usr/bin/python3 -m pip install --upgrade pip'
 alias pipxup='pipx upgrade-all'
 alias pipu='pip freeze --user | cut -d"=" -f1 | xargs -n1 pip install -U'
+alias cargu='cargo install-update -a'
 
 # specs, system tools and ip aliases
 alias spec='sudo lshw'
