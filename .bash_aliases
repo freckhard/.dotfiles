@@ -10,7 +10,8 @@ alias cp='cp -i'
 alias g='git'
 
 # Python and python environment aliases
-alias py='ipython3'
+alias py='python3'
+alias ipy='ipython3'
 alias venvc='virtualenv venv'
 alias venvu='virtualenv --upgrade'
 alias venv1='source venv/bin/activate'
@@ -75,6 +76,7 @@ alias ö='cd ..'
 alias ä='cd ..'
 alias cd.='cd $(readlink -f .)'	# Go to real dir (i.e. if current dir is linked)
 alias cwd='pwd | tr -d \\n | xclip'
+alias open='xdg-open'
 
 # edit this file
 alias bedit='vim ~/.bash_aliases'
@@ -106,6 +108,7 @@ alias ip1='curl ifconfig.me'
 # time & date aliases
 alias ncal='ncal -Mwb'
 alias kw='echo "KW "$(date +%V)'
+alias date='date -R'
 
 # python helper tools
 alias xfd='py $HOME/Workspace/helper_tools/format_date.py'
@@ -118,6 +121,9 @@ alias windl='cd $HOME/Workspace/win10spotlight && python3 win10spotlight_downloa
 alias fd='fdfind'
 alias bat='batcat'
 alias t='tail -f'
+
+# get filecount including dotfiles from current directory
+alias n='shopt -s nullglob dotglob; files=( * ); echo "${#files[@]}"'
 
 # typo correction
 alias mdkir='mkdir'
