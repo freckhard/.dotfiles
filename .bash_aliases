@@ -219,70 +219,51 @@ _ws ()
 
 complete -o nospace -F _ws ws
 
-# Create new workspace project, enter folder and initialise repository
-nwp ()
-    {
-        local project=$WORKSPACE/$1
-        mkdir $project
-        cd $project
-        git init
-    }
+# autocomplete for pip
+_pip_completion()
+{
+    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
+                   COMP_CWORD=$COMP_CWORD \
+                   PIP_AUTO_COMPLETE=1 $1 2>/dev/null ) )
+}
+complete -o default -F _pip_completion pip
+
+################################################################################
+# Loaders section of different things, like paths, initialisers, evals and exports
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ]; then PATH="$HOME/.local/bin:$PATH"; fi
+
+# set PATH so it includes rust's cargo bin if it exists
+if [ -d "$HOME/.cargo/bin" ]; then PATH="$HOME/.cargo/bin:$PATH"; fi
+
+# load separate work related aliases if it exists
+if [ -f $HOME/.work_aliases ]; then source $HOME/.work_aliases; fi
+
+# evaluate following programs if existing
+command -v pipx > /dev/null && eval "$(register-python-argcomplete3 pipx)"
+command -v zoxide > /dev/null && eval "$(zoxide init --cmd cd bash)" 
 
 # Function definition for fuzzy ripgrep-all finding
 rga-fzf() {
 	RG_PREFIX="rga --files-with-matches"
 	local file
-	file="$(
-		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
-			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
-				--phony -q "$1" \
-				--bind "change:reload:$RG_PREFIX {q}" \
-				--preview-window="70%:wrap"
-	)" &&
+	file="$(FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+		fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+		    --phony -q "$1" --bind "change:reload:$RG_PREFIX {q}" \
+		    --preview-window="70%:wrap")" &&
 	echo "opening $file" &&
 	xdg-open "$file"
 }
 
 ################################################################################
-
-# Snippets
-# if [ "$HOSTNAME" == "T460" ]; then
-# fi
-
-
-################################################################################
-# Loaders section of different things, like paths, initialisers and evals
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-# set PATH so it includes rust's cargo bin if it exists
-if [ -d "$HOME/.cargo/bin" ] ; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-# load separate work related aliases if it exists
-if [ -f ~/.work_aliases ]; then
-	. ~/.work_aliases
-fi
-
-# load autojump navigation functionalities if installed
-if [ -f /usr/share/autojump/autojump.sh ]; then
-        . /usr/share/autojump/autojump.sh
-fi
-
-# load bash autocompletion for pipx isolated package installer
-command -v pipx > /dev/null && eval "$(register-python-argcomplete3 pipx)"
-command -v zoxide > /dev/null && eval "$(zoxide init bash)"
-
-################################################################################
-# exports
-
 # history appender, for a complete history when using more than one terminal
-# declared in this special way to be compatible with the autojump package
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} history -a"
+# declared in this special way to be compatible with the zoxide navigation package
+prompt_command_function() {
+  __zoxide_hook
+  history -a
+}
+export PROMPT_COMMAND=prompt_command_function
 
 # necessary export for gpg-agent invocation
 export GPG_TTY=$(tty)
