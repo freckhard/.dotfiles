@@ -184,15 +184,27 @@ fi
 
 ################################################################################
 
+# workspace definitions
 export WORKSPACE=$HOME/Workspace
 
-# Change Directory to ~/Workspace
+# Change directory to ~/Workspace with ws
+# Change directory to ~/Workspace/<folder> with ws <folder>
 ws ()
     {
     cd "${WORKSPACE}/$1"
     }
 
-# Enable tab auto completion for workspace
+# Create new workspace project, enter folder and initialise git repository
+nwp ()
+    {
+        local project=$WORKSPACE/$1
+        mkdir $project
+        cd $project
+        git init
+    }
+
+# Enable tab auto completions
+# autocomplete for the ws workspace command
 _ws ()
     {
         local cur
