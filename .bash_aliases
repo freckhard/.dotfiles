@@ -90,6 +90,7 @@ alias b='bref'
 # aliases for updating via apt, nala, pip and pip itself
 alias nup='sudo nala upgrade'
 alias nupy='sudo nala upgrade -y'
+alias nupyx='sudo nala upgrade -y && exit'
 alias goup='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade'
 alias goupx='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade -y && exit'
 alias pipup='/usr/bin/python3 -m pip install --upgrade pip'
@@ -101,7 +102,6 @@ alias cargu='cargo install-update -a'
 alias spec='sudo lshw'
 alias specs='inxi -Fxzm'
 alias mint='neofetch'
-alias btop='bpytop'
 alias ip0='hostname -I | awk "{print \$1}"'
 alias ip1='curl ifconfig.me'
 
@@ -112,6 +112,7 @@ alias date='date -R'
 
 # python helper tools
 alias xfd='py $HOME/Workspace/helper_tools/format_date.py'
+alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
 alias abo='py $HOME/Workspace/helper_tools/ablage_organiser.py'
 alias trim='py $HOME/Workspace/helper_tools/trim_whitespaces.py'
 alias dupli='python3 $HOME/Workspace/dupli_finder/dupli_finder.py'
@@ -124,6 +125,7 @@ alias t='tail -f'
 
 # get filecount including dotfiles from current directory
 alias n='shopt -s nullglob dotglob; files=( * ); echo "${#files[@]}"'
+alias wcl='wc -l'
 
 # typo correction
 alias mdkir='mkdir'
