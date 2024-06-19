@@ -119,7 +119,6 @@ alias dupli='python3 $HOME/Workspace/dupli_finder/dupli_finder.py'
 alias windl='cd $HOME/Workspace/win10spotlight && python3 win10spotlight_downloader.py'
 
 # miscellaneous tools
-alias fd='fdfind'
 alias bat='batcat'
 alias t='tail -f'
 
@@ -175,6 +174,7 @@ alias xclip='clip.exe'
 alias xpaste='PowerShell.exe Get-Clipboard'
 alias shutdown='PowerShell.exe Stop-Computer -ComputerName localhost'
 alias wifi='python3 ~/Workspace/read_wifis_win10/read_wifis_win10.py'
+alias open='wsl-open'
 
 function npp()
 {
@@ -242,9 +242,13 @@ if [ -d "$HOME/.cargo/bin" ]; then PATH="$HOME/.cargo/bin:$PATH"; fi
 # load separate work related aliases if it exists
 if [ -f $HOME/.work_aliases ]; then source $HOME/.work_aliases; fi
 
+# load local nix-profile binary path if it exists
+if [ -d "$HOME/.nix-profile/bin" ]; then export PATH=$HOME/.nix-profile/bin:$PATH; fi
+
 # evaluate following programs if existing
 command -v pipx > /dev/null && eval "$(register-python-argcomplete3 pipx)"
 command -v zoxide > /dev/null && eval "$(zoxide init --cmd cd bash)" 
+command -v fzf > /dev/null && eval "$(fzf --bash)"
 
 # Function definition for fuzzy ripgrep-all finding
 rga-fzf() {

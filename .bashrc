@@ -12,7 +12,7 @@ esac
 # See bash(1) for more options
 #HISTCONTROL=ignoreboth
 HISTCONTROL=ignorespace
-HISTIGNORE='c:bedit:bref:b:goup*:yt-dlp*:rm*:l:ls:ll:ö:ä:ü:history*'
+HISTIGNORE='c:bedit:bref:b:rm*:l:ls:ll:ö:ä:ü'
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -122,4 +122,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Set LESSCHARSET to UTF-8 to correctly display non-ASCII characters
+# needed for git ydiff, as git is dumping out raw bytes to the pager
+# which in most cases would be "less"
+export LESSCHARSET=utf-8
 
