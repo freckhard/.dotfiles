@@ -276,7 +276,7 @@ prompt_command_function() {
   __zoxide_hook
   history -a
 }
-export PROMPT_COMMAND=prompt_command_function
+command -v zoxide > /dev/null && export PROMPT_COMMAND=prompt_command_function
 
 # necessary export for gpg-agent invocation
 export GPG_TTY=$(tty)
