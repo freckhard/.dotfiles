@@ -12,7 +12,7 @@ alias g='git'
 # Python and python environment aliases
 alias py='python3'
 alias ipy='ipython3'
-alias venvc='virtualenv venv'
+alias venvc='virtualenv venv && venv1'
 alias venvu='virtualenv --upgrade'
 alias venv1='source venv/bin/activate'
 alias venv0='deactivate'
@@ -60,13 +60,14 @@ alias llt='lt -r'
 alias lls='ls --group-directories-first'
 alias ld='ll -d */'
 alias lda='la -d .*/'
+alias lsa='ls -a --group-directories-first'
 
 # directory aliases
 alias dl='cd ~/Downloads'
 alias dt='cd ~/Desktop'
-alias db='cd ~/Dropbox'
+alias db='cd ~/Daten'
 alias dk='cd ~/Dokumente'
-alias ab='cd ~/Dropbox/Ablage'
+alias ab='cd ~/Daten/Ablage'
 alias tf='cd ~/Transfer'
 
 # navigation aliases
@@ -97,6 +98,7 @@ alias pipup='/usr/bin/python3 -m pip install --upgrade pip'
 alias pipxup='pipx upgrade-all'
 alias pipu='pip freeze --user | cut -d"=" -f1 | xargs -n1 pip install -U'
 alias cargu='cargo install-update -a'
+alias nixup='nix-channel --update && nix-env -u && nix-collect-garbage -d'
 
 # specs, system tools and ip aliases
 alias spec='sudo lshw'
@@ -110,9 +112,12 @@ alias ncal='ncal -Mwb'
 alias kw='echo "KW "$(date +%V)'
 alias date='date -R'
 
+# software aliases
+alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
+alias fd='fdfind'
+
 # python helper tools
 alias xfd='py $HOME/Workspace/helper_tools/format_date.py'
-alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
 alias abo='py $HOME/Workspace/helper_tools/ablage_organiser.py'
 alias trim='py $HOME/Workspace/helper_tools/trim_whitespaces.py'
 alias dupli='python3 $HOME/Workspace/dupli_finder/dupli_finder.py'
@@ -133,7 +138,7 @@ alias sudu='sudo '
 # helper tools
 alias rewe='python3 $HOME/Workspace/rewe_tools/rewe_tools.py'
 alias rewedl='python3 $HOME/Workspace/rewe_tools/rewe_mails.py'
-alias rewedir='cd $HOME/Dropbox/Dokumente/Familie/$(date +%Y)/REWE'
+alias rewedir='cd $HOME/Daten/Dokumente/Familie/$(date +%Y)/REWE'
 
 
 ################################################################################
@@ -154,6 +159,8 @@ alias wlan1='nmcli radio wifi on'
 alias wlan0='nmcli radio wifi off'
 alias wwan1='nmcli radio wwan on'
 alias wwan0='nmcli radio wwan off'
+
+alias uefi='sudo systemctl reboot --firmware-setup'
 
 fi
 
