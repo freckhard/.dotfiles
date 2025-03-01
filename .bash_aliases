@@ -99,6 +99,7 @@ alias pipxup='pipx upgrade-all'
 alias pipu='pip freeze --user | cut -d"=" -f1 | xargs -n1 pip install -U'
 alias cargu='cargo install-update -a'
 alias nixup='nix-channel --update && nix-env -u && nix-collect-garbage -d'
+alias fup='flatpak update -y'
 
 # specs, system tools and ip aliases
 alias spec='sudo lshw'
@@ -161,6 +162,8 @@ alias wwan1='nmcli radio wwan on'
 alias wwan0='nmcli radio wwan off'
 
 alias uefi='sudo systemctl reboot --firmware-setup'
+
+alias fh='flathub search'
 
 fi
 
@@ -253,15 +256,12 @@ if [ -f $HOME/.work_aliases ]; then source $HOME/.work_aliases; fi
 if [ -d "$HOME/.nix-profile/bin" ]; then export PATH=$HOME/.nix-profile/bin:$PATH; fi
 
 # Configure shell environment for command-line tools if they exist
+command -v vim > /dev/null && export EDITOR=vim
 command -v pipx > /dev/null && eval "$(register-python-argcomplete3 pipx)"
 command -v zoxide > /dev/null && eval "$(zoxide init --cmd cd bash)" 
 # fzf --bash exists in upstream versions, which has not made it to most distro repositories yet
-if command -v fzf > /dev/null; then
-  if fzf --bash > /dev/null 2>&1; then
-    eval "$(fzf --bash)"
-  else
-    source /usr/share/doc/fzf/examples/key-bindings.bash 2>/dev/null || true
-  fi
+if command -v fzf > /dev/null && fzf --bash > /dev/null 2>&1; then
+  eval "$(fzf --bash)"
 fi
 
 # Function definition for fuzzy ripgrep-all finding
