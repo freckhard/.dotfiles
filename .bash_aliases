@@ -252,10 +252,17 @@ if [ -f $HOME/.work_aliases ]; then source $HOME/.work_aliases; fi
 # load local nix-profile binary path if it exists
 if [ -d "$HOME/.nix-profile/bin" ]; then export PATH=$HOME/.nix-profile/bin:$PATH; fi
 
-# evaluate following programs if existing
+# Configure shell environment for command-line tools if they exist
 command -v pipx > /dev/null && eval "$(register-python-argcomplete3 pipx)"
 command -v zoxide > /dev/null && eval "$(zoxide init --cmd cd bash)" 
-command -v fzf > /dev/null && eval "$(fzf --bash)"
+# fzf --bash exists in upstream versions, which has not made it to most distro repositories yet
+if command -v fzf > /dev/null; then
+  if fzf --bash > /dev/null 2>&1; then
+    eval "$(fzf --bash)"
+  else
+    source /usr/share/doc/fzf/examples/key-bindings.bash 2>/dev/null || true
+  fi
+fi
 
 # Function definition for fuzzy ripgrep-all finding
 rga-fzf() {
