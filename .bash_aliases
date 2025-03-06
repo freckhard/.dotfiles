@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # enable aliases to be sudoed
 alias sudo='sudo '
 
@@ -60,7 +61,8 @@ alias llt='lt -r'
 alias lls='ls --group-directories-first'
 alias ld='ll -d */'
 alias lda='la -d .*/'
-alias lsa='ls -a --group-directories-first'
+alias lld='la -d */ -d .*/'
+alias lsa='ls -A --group-directories-first'
 
 # directory aliases
 alias dl='cd ~/Downloads'
