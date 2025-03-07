@@ -187,6 +187,8 @@ alias xpaste='PowerShell.exe Get-Clipboard'
 alias shutdown='PowerShell.exe Stop-Computer -ComputerName localhost'
 alias wifi='python3 ~/Workspace/read_wifis_win10/read_wifis_win10.py'
 alias open='wsl-open'
+alias ssh="ssh.exe"
+alias ssh-add='ssh-add.exe'
 
 function npp()
 {
