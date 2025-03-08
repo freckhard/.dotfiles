@@ -31,6 +31,7 @@ alias gl1='git log --oneline'
 alias gls='git log --stat'
 alias gll='git log -1 HEAD'
 alias glg='git log --graph'
+alias gds='git ydiff -sw0 --staged'
 
 # dotfiles git aliases
 alias dg='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
@@ -46,6 +47,7 @@ alias dgls='dg log --stat'
 alias dgll='dg log -1 HEAD'
 alias dglg='dgl --graph'
 alias dgit='dg'
+alias dgds='dgd --staged'
 alias dgab='dga ~/.bash_aliases'
 
 # list options
@@ -263,9 +265,12 @@ if [ -d "$HOME/.nix-profile/bin" ]; then export PATH=$HOME/.nix-profile/bin:$PAT
 command -v vim > /dev/null && export EDITOR=vim
 command -v pipx > /dev/null && eval "$(register-python-argcomplete3 pipx)"
 command -v zoxide > /dev/null && eval "$(zoxide init --cmd cd bash)" 
+
+# Configure fzf completions
 # fzf --bash exists in upstream versions, which has not made it to most distro repositories yet
-if command -v fzf > /dev/null && fzf --bash > /dev/null 2>&1; then
-  eval "$(fzf --bash)"
+if command -v fzf > /dev/null; then
+  { fzf --bash > /dev/null 2>&1 && eval "$(fzf --bash)"; } || 
+  source /usr/share/doc/fzf/examples/key-bindings.bash 2>/dev/null
 fi
 
 # Function definition for fuzzy ripgrep-all finding
