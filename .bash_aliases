@@ -195,6 +195,9 @@ alias open='wsl-open'
 alias ssh="ssh.exe"
 alias ssh-add='ssh-add.exe'
 
+# WSL-specific exports
+export RSYNC_RSH="ssh.exe"
+
 function npp()
 {
 	'/mnt/c/Program Files/Notepad++/notepad++.exe' $(wslpath -w $@)
