@@ -91,9 +91,9 @@ alias bedit='vim ~/.bash_aliases'
 alias cedit='code ~/.bash_aliases'
 alias xedit='xed ~/.bash_aliases'
 
-# refresh this file
+# refresh bash config
 alias bref='clear && exec bash'
-alias b='bref'
+alias b='source $HOME/.bashrc'
 
 # aliases for updating via apt, nala, pip and pip itself
 alias nup='sudo nala upgrade'
@@ -143,6 +143,11 @@ alias wcl='wc -l'
 alias mdkir='mkdir'
 alias sudu='sudo '
 
+## Color support for grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 # helper tools
 alias rewe='python3 $HOME/Workspace/rewe_tools/rewe_tools.py'
 alias rewedl='python3 $HOME/Workspace/rewe_tools/rewe_mails.py'
@@ -153,7 +158,7 @@ alias rewedir='cd $HOME/Daten/Dokumente/Familie/$(date +%Y)/REWE'
 ######################## Linux (Mint) specific aliases #########################
 ################################################################################
 
-if [[ "$(< /proc/version)" != *@(Microsoft|microsoft|WSL|wsl)* ]]; then
+if [[ "$(< /proc/version)" != *WSL* ]]; then
 
 # clipboard simplifications
 alias xpaste="xclip -o"
@@ -179,7 +184,7 @@ fi
 ######################## WSL specific aliases ##################################
 ################################################################################
 
-if [[ "$(< /proc/version)" == *@(Microsoft|microsoft|WSL|wsl)* ]]; then
+if [[ "$(< /proc/version)" == *WSL* ]]; then
 
 # getting rid of horribly highlighted folders in WSL
 export LS_COLORS=$LS_COLORS:'ow=1;34:';
@@ -256,28 +261,21 @@ complete -o default -F _pip_completion pip
 # Loaders section of different things, like paths, initialisers, evals and exports
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ]; then PATH="$HOME/.local/bin:$PATH"; fi
+if [[ -d "$HOME/.local/bin" ]]; then PATH="$HOME/.local/bin:$PATH"; fi
 
 # set PATH so it includes rust's cargo bin if it exists
-if [ -d "$HOME/.cargo/bin" ]; then PATH="$HOME/.cargo/bin:$PATH"; fi
+if [[ -d "$HOME/.cargo/bin" ]]; then PATH="$HOME/.cargo/bin:$PATH"; fi
 
 # load separate work related aliases if it exists
-if [ -f $HOME/.work_aliases ]; then source $HOME/.work_aliases; fi
+if [[ -f $HOME/.work_aliases ]]; then source $HOME/.work_aliases; fi
 
 # load local nix-profile binary path if it exists
-if [ -d "$HOME/.nix-profile/bin" ]; then export PATH=$HOME/.nix-profile/bin:$PATH; fi
+if [[ -d "$HOME/.nix-profile/bin" ]]; then export PATH=$HOME/.nix-profile/bin:$PATH; fi
 
 # Configure shell environment for command-line tools if they exist
 command -v vim > /dev/null && export EDITOR=vim
 command -v pipx > /dev/null && eval "$(register-python-argcomplete3 pipx)"
 command -v zoxide > /dev/null && eval "$(zoxide init --cmd cd bash)" 
-
-# Configure fzf completions
-# fzf --bash exists in upstream versions, which has not made it to most distro repositories yet
-if command -v fzf > /dev/null; then
-  { fzf --bash > /dev/null 2>&1 && eval "$(fzf --bash)"; } || 
-  source /usr/share/doc/fzf/examples/key-bindings.bash 2>/dev/null
-fi
 
 # Function definition for fuzzy ripgrep-all finding
 rga-fzf() {
@@ -299,7 +297,7 @@ prompt_command_function() {
   history -a
 }
 command -v zoxide > /dev/null && export PROMPT_COMMAND=prompt_command_function
+command -v zoxide > /dev/null && export _ZO_DOCTOR=0
 
 # necessary export for gpg-agent invocation
 export GPG_TTY=$(tty)
-
