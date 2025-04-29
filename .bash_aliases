@@ -90,6 +90,7 @@ alias open='xdg-open'
 alias bedit='vim ~/.bash_aliases'
 alias cedit='code ~/.bash_aliases'
 alias xedit='xed ~/.bash_aliases'
+alias zedit='vim ~/.zsh_aliases'
 
 # refresh bash config
 alias bref='clear && exec bash'
@@ -115,9 +116,14 @@ alias mint='neofetch'
 alias ip0='hostname -I | awk "{print \$1}"'
 alias ip1='curl ifconfig.me'
 
+# wireguard vpn aliases
+alias wg1='sudo wg-quick up wg0'
+alias wg0='sudo wg-quick down wg0'
+alias wgs='sudo wg show'
+
 # time & date aliases
 alias ncal='ncal -Mwb'
-alias kw='echo "KW "$(date +%V)'
+alias kw='echo "KW "$(\date +%V)'
 alias date='date -R'
 
 # software aliases
