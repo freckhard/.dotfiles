@@ -128,6 +128,7 @@ alias date='date -R'
 
 # software aliases
 alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
+alias rgao='rga "$@" | xargs -I {} open "{}"'
 alias fd='fdfind'
 
 # python helper tools
