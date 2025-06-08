@@ -285,6 +285,7 @@ command -v pipx > /dev/null && eval "$(register-python-argcomplete3 pipx)"
 command -v zoxide > /dev/null && eval "$(zoxide init --cmd cd bash)" 
 
 # Function definition for fuzzy ripgrep-all finding
+# https://github.com/phiresky/ripgrep-all/wiki/fzf-Integration
 rga-fzf() {
 	RG_PREFIX="rga --files-with-matches"
 	local file
