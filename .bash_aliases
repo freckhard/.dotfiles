@@ -124,7 +124,7 @@ alias wgs='sudo wg show'
 # time & date aliases
 alias ncal='ncal -Mwb'
 alias kw='echo "KW "$(\date +%V)'
-alias date='date -R'
+alias date='date "+[KW %V | %F | %A | %T %z]"'
 
 # software aliases
 alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
