@@ -182,7 +182,7 @@ alias wwan0='nmcli radio wwan off'
 
 alias uefi='sudo systemctl reboot --firmware-setup'
 
-alias fh='flathub search'
+alias fh='flatpak search'
 
 fi
 
@@ -284,8 +284,13 @@ command -v vim > /dev/null && export EDITOR=vim
 command -v pipx > /dev/null && eval "$(register-python-argcomplete3 pipx)"
 command -v zoxide > /dev/null && eval "$(zoxide init --cmd cd bash)" 
 
-# Function definition for fuzzy ripgrep-all finding
+################################################################################
+# Function definitions, aliases, defaults and for fzf fuzzyfinder
 # https://github.com/phiresky/ripgrep-all/wiki/fzf-Integration
+
+alias f='fzf'
+alias fo='open $(fzf)'
+
 rga-fzf() {
 	RG_PREFIX="rga --files-with-matches"
 	local file
@@ -296,6 +301,8 @@ rga-fzf() {
 	echo "opening $file" &&
 	xdg-open "$file"
 }
+
+export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --exclude .git --exclude /timeshift'
 
 ################################################################################
 # history appender, for a complete history when using more than one terminal
