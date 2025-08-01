@@ -42,7 +42,7 @@ PS1="\[\e]0;\u@\h: \w\a\]$PS1"
 
 
 ## Bash completion
-[[ -f /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion ||
+[[ -f /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
 [[ -f /etc/bash_completion ]] && source /etc/bash_completion
 
 

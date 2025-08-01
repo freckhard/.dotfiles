@@ -73,7 +73,7 @@ alias lsa='ls -A --group-directories-first'
 alias dl='cd ~/Downloads'
 alias dt='cd ~/Desktop'
 alias db='cd ~/Daten'
-alias dk='cd ~/Dokumente'
+alias dk='cd ~/Documents'
 alias ab='cd ~/Daten/Ablage'
 alias tf='cd ~/Transfer'
 
@@ -85,6 +85,8 @@ alias ä='cd ..'
 alias cd.='cd $(readlink -f .)'	# Go to real dir (i.e. if current dir is linked)
 alias cwd='pwd | tr -d \\n | xclip'
 alias open='xdg-open'
+alias e='open .'
+alias d='cd $HOME/Daten'
 
 # edit this file
 alias bedit='vim ~/.bash_aliases'
@@ -129,7 +131,6 @@ alias date='date "+[KW %V | %F | %A | %T %z]"'
 # software aliases
 alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
 alias rgao='rga "$@" | xargs -I {} open "{}"'
-alias fd='fdfind'
 
 # python helper tools
 alias xfd='py $HOME/Workspace/helper_tools/format_date.py'
@@ -139,8 +140,9 @@ alias dupli='python3 $HOME/Workspace/dupli_finder/dupli_finder.py'
 alias windl='cd $HOME/Workspace/win10spotlight && python3 win10spotlight_downloader.py'
 
 # miscellaneous tools
-alias bat='batcat'
 alias t='tail -f'
+alias ff='fastfetch'
+alias fs='fsearch'
 
 # get filecount including dotfiles from current directory
 alias n='shopt -s nullglob dotglob; files=( * ); echo "${#files[@]}"'
@@ -302,7 +304,7 @@ rga-fzf() {
 	xdg-open "$file"
 }
 
-export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --exclude .git --exclude /timeshift'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git --exclude /timeshift'
 
 ################################################################################
 # history appender, for a complete history when using more than one terminal
@@ -316,3 +318,6 @@ command -v zoxide > /dev/null && export _ZO_DOCTOR=0
 
 # necessary export for gpg-agent invocation
 export GPG_TTY=$(tty)
+
+# flatpak and userspaces
+export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:$HOME/.local/share/flatpak/exports/share"
