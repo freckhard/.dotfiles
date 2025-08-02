@@ -23,14 +23,17 @@ shopt -s globstar       # Enable ** for recursive path expansion
 
 ## Prompt configuration
 color_prompt=yes
-
-case $(id -u):$(< /proc/version) in
-    0:*)  # Root user - red background prompt
-          PS1='\[\033[01;41m\]\u@\h\[\033[00m\]:\[\033[01;31m\]\w\[\033[00m\]\$ ';;
-  *WSL*)  # WSL user - green prompt
-          PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ ';;
-      *)  # Standard Linux - blue prompt
-          PS1='\[\033[01;94m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ ';;
+case $(id -u):$(uname -n) in
+    0:*)    # Root user prompt - red background white text
+            PS1='\[\033[01;37;41m\][\u@\h \W]\[\033[00m\]# ';;
+    *:E31*) # E31 machine - blue prompt
+            PS1='\[\033[01;94m\][\u@\h \W]\[\033[00m\]\$ ';;
+    *:L15*) # L15 machine - bright purple prompt
+            PS1='\[\033[01;35m\][\u@\h \W]\[\033[00m\]\$ ';;
+    *:T460) # T460 machine - neon green prompt
+            PS1='\[\033[01;92m\][\u@\h \W]\[\033[00m\]\$ ';;
+    *)      # Defaults: orange prompt
+            PS1='\[\033[01;38;5;208m\][\u@\h \W]\[\033[00m\]\$ ';;
 esac
 
 # Add window title to prompt
