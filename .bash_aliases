@@ -69,11 +69,12 @@ alias lld='la -d */ -d .*/'
 alias lsa='ls -A --group-directories-first'
 
 # directory aliases
-alias dl='cd ~/Downloads'
-alias dt='cd ~/Desktop'
+alias ab='cd ~/Daten/Ablage'
+alias av='cd ~/Daten/Archiv'
 alias db='cd ~/Daten'
 alias dk='cd ~/Documents'
-alias ab='cd ~/Daten/Ablage'
+alias dl='cd ~/Downloads'
+alias dt='cd ~/Desktop'
 alias tf='cd ~/Transfer'
 
 # navigation aliases
@@ -84,7 +85,7 @@ alias ä='cd ..'
 alias cd.='cd $(readlink -f .)'	# Go to real dir (i.e. if current dir is linked)
 alias cwd='pwd | tr -d \\n | xclip'
 alias open='xdg-open'
-alias e='open .'
+alias e='f(){ open "${1:-.}"; }; f'
 alias d='cd $HOME/Daten'
 
 # edit this file
@@ -139,6 +140,7 @@ alias abo='py $HOME/Workspace/helper_tools/ablage_organiser.py'
 alias trim='py $HOME/Workspace/helper_tools/trim_whitespaces.py'
 alias dupli='python3 $HOME/Workspace/dupli_finder/dupli_finder.py'
 alias windl='cd $HOME/Workspace/win10spotlight && python3 win10spotlight_downloader.py'
+alias eezy='uv run ~/Workspace/eezy/main.py'
 
 # miscellaneous tools
 alias t='tail -f'
