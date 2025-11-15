@@ -82,11 +82,12 @@ alias cd..='cd ..'
 alias ..='cd ..'
 alias ö='cd ..'
 alias ä='cd ..'
-alias cd.='cd $(readlink -f .)'	# Go to real dir (i.e. if current dir is linked)
+alias cd.='cd $(realpath .)'	# Go to real dir (i.e. if current dir is linked)
 alias cwd='pwd | tr -d \\n | xclip'
 alias open='xdg-open'
-alias e='f(){ open "${1:-.}"; }; f'
 alias d='cd $HOME/Daten'
+alias e='f(){ open "${1:-.}"; }; f'
+alias rp='f() { realpath "${1:-.}"; }; f'
 
 # edit this file
 alias bedit='vim ~/.bash_aliases'
@@ -128,7 +129,7 @@ alias wgs='sudo wg show'
 # time & date aliases
 alias ncal='ncal -Mwb'
 alias kw='echo "KW "$(\date +%V)'
-alias date='date "+[KW %V | %F | %A | %T %z]"'
+alias date='date "+%F | KW %V | %A | %T %z"'
 
 # software aliases
 alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
@@ -147,8 +148,9 @@ alias t='tail -f'
 alias ff='fastfetch'
 alias fs='fsearch'
 
-# get filecount including dotfiles from current directory
-alias n='shopt -s nullglob dotglob; files=( * ); echo "${#files[@]}"'
+# get filecount including dotfiles from current or target directory
+alias n='f(){ (cd "${1:-.}" && shopt -s nullglob dotglob && files=( * ) && echo "${#files[@]}"); }; f'
+alias nl='for dir in */; do echo -n "$dir: "; fd . --hidden "$dir" | wc -l; done'
 alias wcl='wc -l'
 
 # typo correction
@@ -203,7 +205,6 @@ export LS_COLORS=$LS_COLORS:'ow=1;34:';
 
 # windows specific aliases
 alias d='cd /mnt/d/'
-alias e='explorer.exe .'
 alias xclip='clip.exe'
 alias xpaste='PowerShell.exe Get-Clipboard'
 alias shutdown='PowerShell.exe Stop-Computer -ComputerName localhost'
