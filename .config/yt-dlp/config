@@ -1,1 +1,2 @@
 --merge-output-format mp4
+--concurrent-fragments 32

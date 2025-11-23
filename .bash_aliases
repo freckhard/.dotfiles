@@ -71,11 +71,14 @@ alias lsa='ls -A --group-directories-first'
 # directory aliases
 alias ab='cd ~/Daten/Ablage'
 alias av='cd ~/Daten/Archiv'
-alias db='cd ~/Daten'
+alias da='cd ~/Daten'
 alias dk='cd ~/Documents'
 alias dl='cd ~/Downloads'
 alias dt='cd ~/Desktop'
-alias tf='cd ~/Transfer'
+alias d='cd /vol/data'
+alias vol='cd /vol/'
+alias data='cd /vol/data'
+alias lore='cd /vol/lore'
 
 # navigation aliases
 alias cd..='cd ..'
@@ -85,7 +88,6 @@ alias ä='cd ..'
 alias cd.='cd $(realpath .)'	# Go to real dir (i.e. if current dir is linked)
 alias cwd='pwd | tr -d \\n | xclip'
 alias open='xdg-open'
-alias d='cd $HOME/Daten'
 alias e='f(){ open "${1:-.}"; }; f'
 alias rp='f() { realpath "${1:-.}"; }; f'
 
@@ -294,7 +296,6 @@ command -v zoxide > /dev/null && eval "$(zoxide init --cmd cd bash)"
 # Function definitions, aliases, defaults and for fzf fuzzyfinder
 # https://github.com/phiresky/ripgrep-all/wiki/fzf-Integration
 
-alias f='fzf'
 alias fo='open $(fzf)'
 
 rga-fzf() {
