@@ -156,8 +156,8 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # helper tools
-alias rewe='python3 $HOME/Workspace/rewe_tools/rewe_tools.py'
-alias rewedl='python3 $HOME/Workspace/rewe_tools/rewe_mails.py'
+alias rewe='uv run --project $HOME/Workspace/rewe_tools $HOME/Workspace/rewe_tools/rewe_tools.py'
+alias rewedl='uv run --project $HOME/Workspace/rewe_tools $HOME/Workspace/rewe_tools/rewe_mails.py'
 alias rewedir='cd $HOME/Daten/Dokumente/Familie/$(date +%Y)/REWE'
 
 
