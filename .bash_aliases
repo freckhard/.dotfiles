@@ -102,17 +102,9 @@ alias zedit='vim ~/.zsh_aliases'
 alias bref='clear && exec bash'
 alias b='source $HOME/.bashrc'
 
-# aliases for updating via apt, nala, pip and pip itself
-alias nup='sudo nala upgrade'
-alias nupy='sudo nala upgrade -y'
-alias nupyx='sudo nala upgrade -y && exit'
+# aliases for updating package manager packages
 alias goup='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade'
 alias goupx='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade -y && exit'
-alias pipup='/usr/bin/python3 -m pip install --upgrade pip'
-alias pipxup='pipx upgrade-all'
-alias pipu='pip freeze --user | cut -d"=" -f1 | xargs -n1 pip install -U'
-alias cargu='cargo install-update -a'
-alias nixup='nix-channel --update && nix-env -u && nix-collect-garbage -d'
 alias fup='flatpak update -y'
 
 # specs, system tools and ip aliases
@@ -135,15 +127,14 @@ alias date='date "+%F | KW %V | %A | %T %z"'
 
 # software aliases
 alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
-alias rgao='rga "$@" | xargs -I {} open "{}"'
+rgao() { rga "$@" | xargs -I {} wsl-open "{}"; }
 
 # python helper tools
 alias xfd='py $HOME/Workspace/helper_tools/format_date.py'
 alias abo='py $HOME/Workspace/helper_tools/ablage_organiser.py'
 alias trim='py $HOME/Workspace/helper_tools/trim_whitespaces.py'
-alias dupli='python3 $HOME/Workspace/dupli_finder/dupli_finder.py'
-alias windl='cd $HOME/Workspace/win10spotlight && python3 win10spotlight_downloader.py'
-alias eezy='uv run ~/Workspace/eezy/main.py'
+alias dupli='uv run --project $HOME/Workspace/dupli_finder $HOME/Workspace/dupli_finder/dupli_finder.py'
+alias eezy='uv run --project $HOME/Workspace/eezy $HOME/Workspace/eezy/main.py'
 
 # miscellaneous tools
 alias t='tail -f'
@@ -205,8 +196,11 @@ if [[ "$(< /proc/version)" == *WSL* ]]; then
 # getting rid of horribly highlighted folders in WSL
 export LS_COLORS=$LS_COLORS:'ow=1;34:';
 
+alias nedit='npp $HOME/.bash_aliases'
+
 # windows specific aliases
 alias d='cd /mnt/d/'
+alias dk='cd ~/Dokumente'
 alias xclip='clip.exe'
 alias xpaste='PowerShell.exe Get-Clipboard'
 alias shutdown='PowerShell.exe Stop-Computer -ComputerName localhost'

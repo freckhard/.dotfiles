@@ -3,7 +3,7 @@
 
 
 ## Exit if not running interactively
-case $- in *i*) ;; *) return;; esac
+[[ $- != *i* ]] && return
 
 
 ## History configuration
@@ -16,7 +16,7 @@ shopt -s histappend
 
 
 ## Shell options
-shopt -s checkwinsize   # Update linrs and columns after each command
+shopt -s checkwinsize   # Update lines and columns after each command
 shopt -s cdspell        # Auto-correct typos in cd commands, e.g. "cd /usr/lcoal/bin" -> "/usr/local/bin"
 shopt -s globstar       # Enable ** for recursive path expansion
 
@@ -32,9 +32,10 @@ case $(id -u):$(uname -n) in
             PS1='\[\033[01;35m\][\u@\h \W]\[\033[00m\]\$ ';;
     *:T460) # T460 machine - neon green prompt
             PS1='\[\033[01;92m\][\u@\h \W]\[\033[00m\]\$ ';;
-    *)      # Defaults: orange prompt
-            PS1='\[\033[01;38;5;208m\][\u@\h \W]\[\033[00m\]\$ ';;
+    *)      # Defaults: blue bold prompt
+            PS1='\[\033[01;38;2;59;120;255m\][\u@\h \W]\[\033[00m\]\$ ';;
 esac
+
 
 # Add window title to prompt
 PS1="\[\e]0;\u@\h: \w\a\]$PS1"
@@ -52,10 +53,12 @@ PS1="\[\e]0;\u@\h: \w\a\]$PS1"
 ## Environment setup
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
+
 # Set LESSCHARSET to UTF-8 to correctly display non-ASCII characters
 # needed for git ydiff, as git is dumping out raw bytes to the pager
 # which in most cases would be "less"
 export LESSCHARSET=utf-8
+
 
 ## FZF Integration
 # Configure bash specific fzf completions
