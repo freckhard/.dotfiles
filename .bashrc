@@ -11,7 +11,7 @@ HISTSIZE=104857600
 HISTFILESIZE=104857600
 HISTTIMEFORMAT="%F %T  "
 HISTCONTROL=ignorespace
-HISTIGNORE='c:bedit:bref:b:rm*:l:ls:ll:ö:ä:ü'
+HISTIGNORE='c:bedit:bref:b:rm*:l:ls:ll:ö:ä:ü:yt-dlp*'
 shopt -s histappend
 
 
@@ -67,3 +67,5 @@ if command -v fzf > /dev/null; then
   { fzf --bash > /dev/null 2>&1 && eval "$(fzf --bash)"; } || 
   source /usr/share/doc/fzf/examples/key-bindings.bash 2>/dev/null
 fi
+
+export PAGER=cat
