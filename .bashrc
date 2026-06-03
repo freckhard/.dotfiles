@@ -64,7 +64,7 @@ export LESSCHARSET=utf-8
 # Configure bash specific fzf completions
 # fzf --bash exists in upstream versions, which has not made it to most distro repositories yet
 if command -v fzf > /dev/null; then
-  { fzf --bash > /dev/null 2>&1 && eval "$(fzf --bash)"; } || 
+  { fzf --bash > /dev/null 2>&1 && eval "$(fzf --bash)"; } ||
   source /usr/share/doc/fzf/examples/key-bindings.bash 2>/dev/null
 fi
 

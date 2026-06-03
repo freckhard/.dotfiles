@@ -130,9 +130,9 @@ alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
 rgao() { rga "$@" | xargs -I {} wsl-open "{}"; }
 
 # python helper tools
-alias xfd='py $HOME/Workspace/helper_tools/format_date.py'
-alias abo='py $HOME/Workspace/helper_tools/ablage_organiser.py'
 alias trim='py $HOME/Workspace/helper_tools/trim_whitespaces.py'
+alias xfd='py $HOME/Workspace/helper_tools/format_date.py'
+alias ablo='uv run --project $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser/main.py'
 alias dupli='uv run --project $HOME/Workspace/dupli_finder $HOME/Workspace/dupli_finder/dupli_finder.py'
 alias eezy='uv run --project $HOME/Workspace/eezy $HOME/Workspace/eezy/main.py'
 
@@ -140,6 +140,7 @@ alias eezy='uv run --project $HOME/Workspace/eezy $HOME/Workspace/eezy/main.py'
 alias t='tail -f'
 alias ff='fastfetch'
 alias fs='fsearch'
+alias ciso='sha256sum -c sha256sums.txt --ignore-missing && b2sum -c b2sums.txt --ignore-missing'
 
 # get filecount including dotfiles from current or target directory
 alias n='f(){ (cd "${1:-.}" && shopt -s nullglob dotglob && files=( * ) && echo "${#files[@]}"); }; f'
@@ -158,7 +159,7 @@ alias egrep='egrep --color=auto'
 # helper tools
 alias rewe='uv run --project $HOME/Workspace/rewe_tools $HOME/Workspace/rewe_tools/rewe_tools.py'
 alias rewedl='uv run --project $HOME/Workspace/rewe_tools $HOME/Workspace/rewe_tools/rewe_mails.py'
-alias rewedir='cd $HOME/Daten/Dokumente/Familie/$(date +%Y)/REWE'
+alias rewedir='cd $HOME/Daten/Archiv/Familie/$(\date +%Y)/REWE'
 
 
 ################################################################################
