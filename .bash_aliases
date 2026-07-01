@@ -206,17 +206,22 @@ alias xclip='clip.exe'
 alias xpaste='pwsh.exe -NoProfile -Command "[Console]::OutputEncoding=[Text.Encoding]::UTF8; Get-Clipboard"'
 alias shutdown='PowerShell.exe Stop-Computer -ComputerName localhost'
 alias wifi='python3 ~/Workspace/read_wifis_win10/read_wifis_win10.py'
-alias open='wsl-open'
 alias ssh="ssh.exe"
 alias ssh-add='ssh-add.exe'
 
+if [[ ! -f "$HOME/.local/bin/open" ]]; then
+	alias open='WslOpenExe="powershell.exe -NoProfile Start" wsl-open'
+fi
+
+if [[ ! -f "$HOME/.local/bin/npp" ]]; then
+	function npp()
+	{
+		'/mnt/c/Program Files/Notepad++/notepad++.exe' $(wslpath -w $@)
+	}
+fi
+
 # WSL-specific exports
 export RSYNC_RSH="ssh.exe"
-
-function npp()
-{
-	'/mnt/c/Program Files/Notepad++/notepad++.exe' $(wslpath -w $@)
-}
 
 fi
 
@@ -321,3 +326,4 @@ export GPG_TTY=$(tty)
 
 # flatpak and userspaces
 export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:$HOME/.local/share/flatpak/exports/share"
+
