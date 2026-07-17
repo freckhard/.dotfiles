@@ -209,6 +209,10 @@ alias wifi='python3 ~/Workspace/read_wifis_win10/read_wifis_win10.py'
 alias ssh="ssh.exe"
 alias ssh-add='ssh-add.exe'
 
+# The generic open alias (xdg-open) from above must go in WSL, otherwise it would
+# shadow an 'open' executable in PATH (aliases always win over executables in
+# interactive shells). If no such executable exists, fall back to the alias below.
+unalias open 2>/dev/null
 if [[ ! -f "$HOME/.local/bin/open" ]]; then
 	alias open='WslOpenExe="powershell.exe -NoProfile Start" wsl-open'
 fi
