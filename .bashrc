@@ -28,8 +28,8 @@ case $(id -u):$(uname -n) in
             PS1='\[\033[01;37;41m\][\u@\h \W]\[\033[00m\]# ';;
     *:E31*) # E31 machine - blue prompt
             PS1='\[\033[01;94m\][\u@\h \W]\[\033[00m\]\$ ';;
-    *:L15*) # L15 machine - bright purple prompt
-            PS1='\[\033[01;35m\][\u@\h \W]\[\033[00m\]\$ ';;
+    *:L15*) # L15 machine - purple prompt
+            PS1='\[\033[1;38;2;180;0;255m\][\u@\h \W]\[\033[00m\]\$ ';;
     *:T460) # T460 machine - neon green prompt
             PS1='\[\033[01;92m\][\u@\h \W]\[\033[00m\]\$ ';;
     *)      # Defaults: blue bold prompt

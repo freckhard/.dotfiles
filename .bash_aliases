@@ -130,13 +130,11 @@ alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
 rgao() { rga "$@" | xargs -I {} wsl-open "{}"; }
 
 # python helper tools
+alias xfd="uv run --project $HOME/Workspace/helper_tools $HOME/Workspace/helper_tools/format_date.py"
 alias trim='py $HOME/Workspace/helper_tools/trim_whitespaces.py'
-alias xfd='py $HOME/Workspace/helper_tools/format_date.py'
 alias ablo='uv run --project $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser/main.py'
 alias dupli='uv run --project $HOME/Workspace/dupli_finder $HOME/Workspace/dupli_finder/dupli_finder.py'
 alias eezy='uv run --project $HOME/Workspace/eezy $HOME/Workspace/eezy/main.py'
-alias ablo='uv run --project $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser/main.py'
-
 
 # miscellaneous tools
 alias t='tail -f'
@@ -165,7 +163,6 @@ alias egrep='egrep --color=auto'
 alias rewe='uv run --project $HOME/Workspace/rewe_tools $HOME/Workspace/rewe_tools/rewe_tools.py'
 alias rewedl='uv run --project $HOME/Workspace/rewe_tools $HOME/Workspace/rewe_tools/rewe_mails.py'
 alias rewedir='cd $HOME/Daten/Archiv/Familie/$(\date +%Y)/REWE'
-
 
 ################################################################################
 ######################## Linux (Mint) specific aliases #########################
