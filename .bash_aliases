@@ -135,12 +135,17 @@ alias xfd='py $HOME/Workspace/helper_tools/format_date.py'
 alias ablo='uv run --project $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser/main.py'
 alias dupli='uv run --project $HOME/Workspace/dupli_finder $HOME/Workspace/dupli_finder/dupli_finder.py'
 alias eezy='uv run --project $HOME/Workspace/eezy $HOME/Workspace/eezy/main.py'
+alias ablo='uv run --project $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser/main.py'
+
 
 # miscellaneous tools
 alias t='tail -f'
 alias ff='fastfetch'
 alias fs='fsearch'
 alias ciso='sha256sum -c sha256sums.txt --ignore-missing && b2sum -c b2sums.txt --ignore-missing'
+
+# verify isos in current dir against checksum files
+alias checkiso='sha256sum -c --ignore-missing *sha256*.txt; b2sum -c --ignore-missing *b2*.txt'
 
 # get filecount including dotfiles from current or target directory
 alias n='f(){ (cd "${1:-.}" && shopt -s nullglob dotglob && files=( * ) && echo "${#files[@]}"); }; f'

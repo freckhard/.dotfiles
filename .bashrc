@@ -68,4 +68,3 @@ if command -v fzf > /dev/null; then
   source /usr/share/doc/fzf/examples/key-bindings.bash 2>/dev/null
 fi
 
-export PAGER=cat
