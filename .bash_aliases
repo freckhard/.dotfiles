@@ -202,12 +202,10 @@ export LS_COLORS=$LS_COLORS:'ow=1;34:';
 alias nedit='npp $HOME/.bash_aliases'
 
 # windows specific aliases
-alias d='cd /mnt/d/'
 alias dk='cd ~/Dokumente'
 alias xclip='clip.exe'
 alias xpaste='pwsh.exe -NoProfile -Command "[Console]::OutputEncoding=[Text.Encoding]::UTF8; Get-Clipboard"'
-alias shutdown='PowerShell.exe Stop-Computer -ComputerName localhost'
-alias wifi='python3 ~/Workspace/read_wifis_win10/read_wifis_win10.py'
+alias shutdown='shutdown.exe /s /t 0'
 alias ssh="ssh.exe"
 alias ssh-add='ssh-add.exe'
 
@@ -229,6 +227,16 @@ fi
 # WSL-specific exports
 export RSYNC_RSH="ssh.exe"
 
+# 1Password-SSH-Agent bridge from Windows to WSL
+if grep -qi microsoft /proc/version && [[ -f "$HOME/.local/bin/npiperelay.exe" ]]; then
+	export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
+	if ! ss -lx 2>/dev/null | grep -q "$SSH_AUTH_SOCK"; then
+		rm -f "$SSH_AUTH_SOCK"
+		(setsid socat UNIX-LISTEN:"$SSH_AUTH_SOCK",fork,umask=177 \
+			EXEC:"$HOME/.local/bin/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork \
+			>/dev/null 2>&1 &)
+	fi
+fi
 fi
 
 
