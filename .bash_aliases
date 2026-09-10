@@ -115,11 +115,6 @@ alias ip0='hostname -I | awk "{print \$1}"'
 alias ip1='curl ifconfig.me'
 alias hostname='uname -n'
 
-# wireguard vpn aliases
-alias wg1='sudo wg-quick up wg0'
-alias wg0='sudo wg-quick down wg0'
-alias wgs='sudo wg show'
-
 # time & date aliases
 alias ncal='ncal -Mwb'
 alias kw='echo "KW "$(\date +%V)'
@@ -228,14 +223,21 @@ fi
 export RSYNC_RSH="ssh.exe"
 
 # 1Password-SSH-Agent bridge from Windows to WSL
-if grep -qi microsoft /proc/version && [[ -f "$HOME/.local/bin/npiperelay.exe" ]]; then
+if [[ -f "$HOME/.local/bin/npiperelay.exe" ]]; then
 	export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
-	if ! ss -lx 2>/dev/null | grep -q "$SSH_AUTH_SOCK"; then
+	if [[ ! -S "$SSH_AUTH_SOCK" ]] || ! ss -lx 2>/dev/null | grep -q "$SSH_AUTH_SOCK"; then
 		rm -f "$SSH_AUTH_SOCK"
 		(setsid socat UNIX-LISTEN:"$SSH_AUTH_SOCK",fork,umask=177 \
 			EXEC:"$HOME/.local/bin/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork \
 			>/dev/null 2>&1 &)
 	fi
+fi
+
+# Bilder aus der Zwischenablage in Claude Code (Alt+V)
+# WSLg reicht nur Text durch die Zwischenablage. Der Shim meldet Claude Code
+# zusaetzlich image/png und liefert das Bild ueber powershell.exe.
+if [[ -x $HOME/.local/libexec/claude-clip/xclip ]]; then
+	claude() { PATH="$HOME/.local/libexec/claude-clip:$PATH" command claude "$@"; }
 fi
 fi
 
@@ -340,4 +342,3 @@ export GPG_TTY=$(tty)
 
 # flatpak and userspaces
 export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:$HOME/.local/share/flatpak/exports/share"
-
