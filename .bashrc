@@ -68,3 +68,10 @@ if command -v fzf > /dev/null; then
   source /usr/share/doc/fzf/examples/key-bindings.bash 2>/dev/null
 fi
 
+# Claude Code: if present, authenticate via this service token only
+if [ -f ~/.config/claude-token.env ]; then
+    set -a
+    source ~/.config/claude-token.env
+    set +a
+fi
+
