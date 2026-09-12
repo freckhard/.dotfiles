@@ -1,20 +1,19 @@
 #!/bin/bash
 
-
-# enable aliases to be sudoed
+# ─── enable aliases to be sudoed ──────────────────────────────────────────────
 alias sudo='sudo '
 
-# short handles and other aliases
+# ─── short handles and other aliases ──────────────────────────────────────────
 alias c='clear'
 alias q='exit'
 alias cp='cp -i'
 alias g='git'
 
-# Python and python environment aliases
+# ─── Python and python environment aliases ────────────────────────────────────
 alias py='python3'
 alias ipy='ipython3'
 
-# git aliases
+# ─── git aliases ──────────────────────────────────────────────────────────────
 alias gs='git status -u'
 alias ga='git add'
 alias gd='git ydiff -sw0'
@@ -30,7 +29,7 @@ alias glg='git log --graph'
 alias gds='git ydiff -sw0 --staged'
 alias gL='git log --oneline --graph --pretty=format:"%C(yellow)%h%Creset %G? %C(blue)%an%Creset %s"'
 
-# dotfiles git aliases
+# ─── dotfiles git aliases ─────────────────────────────────────────────────────
 alias dg='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias dgs='dg status'
 alias dga='dg add'
@@ -46,10 +45,10 @@ alias dgll='dg log -1 HEAD'
 alias dglg='dgl --graph'
 alias dgds='dgd --staged'
 alias dglS='dg log --show-signature'
-alias dgab='dga ~/.bash_aliases'
+alias dgab='dga $HOME/.bash_aliases'
 alias dgL='dg log --oneline --graph --pretty=format:"%C(yellow)%h%Creset %G? %C(blue)%an%Creset %s"'
 
-# list options
+# ─── list options ─────────────────────────────────────────────────────────────
 alias ls='ls -v --color=auto'
 alias l='ls -lh --time-style="+[%Y-%m-%d] [%H:%M:%S]" --group-directories-first'
 alias la='l -A'
@@ -68,19 +67,19 @@ alias lda='la -d .*/'
 alias lld='la -d */ -d .*/'
 alias lsa='ls -A --group-directories-first'
 
-# directory aliases
-alias ab='cd ~/Daten/Ablage'
-alias av='cd ~/Daten/Archiv'
-alias da='cd ~/Daten'
-alias dk='cd ~/Documents'
-alias dl='cd ~/Downloads'
-alias dt='cd ~/Desktop'
+# ─── directory aliases ────────────────────────────────────────────────────────
+alias ab='cd $HOME/Daten/Ablage'
+alias av='cd $HOME/Daten/Archiv'
+alias da='cd $HOME/Daten'
+alias dk='cd $HOME/Documents'
+alias dl='cd $HOME/Downloads'
+alias dt='cd $HOME/Desktop'
 alias d='cd /vol/data'
 alias vol='cd /vol/'
 alias data='cd /vol/data'
 alias lore='cd /vol/lore'
 
-# navigation aliases
+# ─── navigation aliases ───────────────────────────────────────────────────────
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ö='cd ..'
@@ -91,133 +90,88 @@ alias open='xdg-open'
 alias e='f(){ open "${1:-.}"; }; f'
 alias rp='f() { realpath "${1:-.}"; }; f'
 
-# edit this file
-alias bedit='vim ~/.bash_aliases'
-alias cedit='code ~/.bash_aliases'
-alias xedit='xed ~/.bash_aliases'
-alias kedit='kate ~/.bash_aliases'
-alias zedit='vim ~/.zsh_aliases'
+# ─── edit this file ───────────────────────────────────────────────────────────
+alias bedit='vim $HOME/.bash_aliases'
+alias cedit='code $HOME/.bash_aliases'
+alias xedit='xed $HOME/.bash_aliases'
+alias kedit='kate $HOME/.bash_aliases'
+alias zedit='vim $HOME/.zsh_aliases'
+alias nedit='npp $HOME/.bash_aliases'
 
-# refresh bash config
+# ─── refresh bash config ──────────────────────────────────────────────────────
 alias bref='clear && exec bash'
 alias b='source $HOME/.bashrc'
 
-# aliases for updating package manager packages
+# ─── aliases for updating package manager packages ────────────────────────────
 alias goup='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade'
 alias goupx='sudo apt update && echo && apt list --upgradable && echo && sudo apt full-upgrade -y && exit'
 alias fup='flatpak update -y'
+alias fh='flatpak search'
 
-# specs, system tools and ip aliases
+# ─── specs, system tools and ip aliases ───────────────────────────────────────
 alias spec='sudo lshw'
 alias specs='inxi -Fxzm'
-alias mint='neofetch'
 alias ip0='hostname -I | awk "{print \$1}"'
 alias ip1='curl ifconfig.me'
 alias hostname='uname -n'
+alias uefi='sudo systemctl reboot --firmware-setup'
 
-# time & date aliases
+# ─── time & date aliases ──────────────────────────────────────────────────────
 alias ncal='ncal -Mwb'
 alias kw='echo "KW "$(\date +%V)'
 alias date='date "+%F | KW %V | %A | %T %z"'
 
-# software aliases
+# ─── clipboard simplifications ────────────────────────────────────────────────
+alias xpaste="xclip -o"
+
+# ─── software aliases ─────────────────────────────────────────────────────────
 alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
 rgao() { rga "$@" | xargs -I {} wsl-open "{}"; }
 
-# python helper tools
-alias xfd="uv run --project $HOME/Workspace/helper_tools $HOME/Workspace/helper_tools/format_date.py"
-alias trim='py $HOME/Workspace/helper_tools/trim_whitespaces.py'
-alias ablo='uv run --project $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser/main.py'
-alias dupli='uv run --project $HOME/Workspace/dupli_finder $HOME/Workspace/dupli_finder/dupli_finder.py'
-alias eezy='uv run --project $HOME/Workspace/eezy $HOME/Workspace/eezy/main.py'
-
-# miscellaneous tools
+# ─── miscellaneous tools ──────────────────────────────────────────────────────
 alias t='tail -f'
 alias ff='fastfetch'
 alias fs='fsearch'
 alias ciso='sha256sum -c sha256sums.txt --ignore-missing && b2sum -c b2sums.txt --ignore-missing'
 
-# verify isos in current dir against checksum files
+# ─── verify isos in current dir against checksum files ────────────────────────
 alias checkiso='sha256sum -c --ignore-missing *sha256*.txt; b2sum -c --ignore-missing *b2*.txt'
 
-# get filecount including dotfiles from current or target directory
+# ─── get filecount including dotfiles from current or target directory ────────
 alias n='f(){ (cd "${1:-.}" && shopt -s nullglob dotglob && files=( * ) && echo "${#files[@]}"); }; f'
 alias nl='for dir in */; do echo -n "$dir: "; fd . --hidden "$dir" | wc -l; done'
 alias wcl='wc -l'
 
-# typo correction
+# ─── typo correction ──────────────────────────────────────────────────────────
 alias mdkir='mkdir'
 alias sudu='sudo '
 
-## Color support for grep
+# ─── Color support for grep ───────────────────────────────────────────────────
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# helper tools
-alias rewe='uv run --project $HOME/Workspace/rewe_tools $HOME/Workspace/rewe_tools/rewe_tools.py'
-alias rewedl='uv run --project $HOME/Workspace/rewe_tools $HOME/Workspace/rewe_tools/rewe_mails.py'
-alias rewedir='cd $HOME/Daten/Archiv/Familie/$(\date +%Y)/REWE'
-
-################################################################################
-######################## Linux (Mint) specific aliases #########################
-################################################################################
-
-if [[ "$(< /proc/version)" != *WSL* ]]; then
-
-# clipboard simplifications
-alias xpaste="xclip -o"
-
-# wifi os specific tools
-alias wifis='sudo python3 ~/Workspace/read_wifis_linux/read_wifis_linux.py'
-alias wifi='echo && sudo grep -lE "^psk=" /etc/NetworkManager/system-connections/* | xargs -I % sudo grep -E "^ssid=|^psk" % | sed -E "s/ssid=|psk=//g" | sed "0~2 a\\\\"'
-alias wificonnect='nmcli device wifi list && nmcli device wifi connect $SSID --ask'
+# ─── wifi and radio ───────────────────────────────────────────────────────────
 alias wifiqr='nmcli device wifi show-password'
 alias wlan1='nmcli radio wifi on'
 alias wlan0='nmcli radio wifi off'
 alias wwan1='nmcli radio wwan on'
 alias wwan0='nmcli radio wwan off'
 
-alias uefi='sudo systemctl reboot --firmware-setup'
-
-alias fh='flatpak search'
-
-fi
-
-
-################################################################################
-######################## WSL specific aliases ##################################
-################################################################################
-
+# ─── WSL specific aliases ─────────────────────────────────────────────────────
 if [[ "$(< /proc/version)" == *WSL* ]]; then
 
-# getting rid of horribly highlighted folders in WSL
-export LS_COLORS=$LS_COLORS:'ow=1;34:';
+	# getting rid of horribly highlighted folders in WSL
+	export LS_COLORS=$LS_COLORS:'ow=1;34:';
 
-alias nedit='npp $HOME/.bash_aliases'
+	# The generic open and xpaste aliases from above must go in WSL, otherwise they
+	# would shadow the wrappers in PATH (aliases always win over executables in
+	# interactive shells).
+	unalias open xpaste 2>/dev/null
 
-# windows specific aliases
-alias dk='cd ~/Dokumente'
-alias xclip='clip.exe'
-alias xpaste='pwsh.exe -NoProfile -Command "[Console]::OutputEncoding=[Text.Encoding]::UTF8; Get-Clipboard"'
-alias shutdown='shutdown.exe /s /t 0'
-
-# The generic open alias (xdg-open) from above must go in WSL, otherwise it would
-# shadow an 'open' executable in PATH (aliases always win over executables in
-# interactive shells). If no such executable exists, fall back to the alias below.
-unalias open 2>/dev/null
-if [[ ! -f "$HOME/.local/bin/open" ]]; then
-	alias open='WslOpenExe="powershell.exe -NoProfile Start" wsl-open'
 fi
 
-if [[ ! -f "$HOME/.local/bin/npp" ]]; then
-	function npp()
-	{
-		'/mnt/c/Program Files/Notepad++/notepad++.exe' $(wslpath -w $@)
-	}
-fi
-
-# 1Password-SSH-Agent bridge from Windows to WSL
+# ─── 1Password-SSH-Agent bridge from Windows to WSL ───────────────────────────
 if [[ -f "$HOME/.local/bin/npiperelay.exe" ]]; then
 	export SSH_AUTH_SOCK="/run/user/$(id -u)/ssh-agent.sock"
 	if [[ ! -S "$SSH_AUTH_SOCK" ]] || ! ss -lx 2>/dev/null | grep -q "$SSH_AUTH_SOCK"; then
@@ -228,62 +182,7 @@ if [[ -f "$HOME/.local/bin/npiperelay.exe" ]]; then
 	fi
 fi
 
-# Bilder aus der Zwischenablage in Claude Code (Alt+V)
-# WSLg reicht nur Text durch die Zwischenablage. Der Shim meldet Claude Code
-# zusaetzlich image/png und liefert das Bild ueber powershell.exe.
-if [[ -x $HOME/.local/libexec/claude-clip/xclip ]]; then
-	claude() { PATH="$HOME/.local/libexec/claude-clip:$PATH" command claude "$@"; }
-fi
-fi
-
-
-################################################################################
-
-# workspace definitions
-export WORKSPACE=$HOME/Workspace
-
-# Change directory to ~/Workspace with ws
-# Change directory to ~/Workspace/<folder> with ws <folder>
-ws ()
-    {
-    cd "${WORKSPACE}/$1"
-    }
-
-# Create new workspace project, enter folder and initialise git repository
-nwp ()
-    {
-        local project=$WORKSPACE/$1
-        mkdir $project
-        cd $project
-        git init
-    }
-
-# Enable tab auto completions
-# autocomplete for the ws workspace command
-_ws ()
-    {
-        local cur
-
-        COMPREPLY=()
-        cur=${COMP_WORDS[$COMP_CWORD]}
-
-        targets=$( ls -d $WORKSPACE/$cur* 2>/dev/null | sed "s|$WORKSPACE/||" )
-
-        COMPREPLY=( $( compgen -W "$targets" -- $cur) )
-    }
-
-complete -o nospace -F _ws ws
-
-# autocomplete for pip
-_pip_completion()
-{
-    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
-                   COMP_CWORD=$COMP_CWORD \
-                   PIP_AUTO_COMPLETE=1 $1 2>/dev/null ) )
-}
-complete -o default -F _pip_completion pip
-
-################################################################################
+# ─── Loaders ──────────────────────────────────────────────────────────────────
 # Loaders section of different things, like paths, initialisers, evals and exports
 
 # set PATH so it includes user's private bin if it exists
@@ -300,10 +199,8 @@ if [[ -d "$HOME/.nix-profile/bin" ]]; then export PATH=$HOME/.nix-profile/bin:$P
 
 # Configure shell environment for command-line tools if they exist
 command -v vim > /dev/null && export EDITOR=vim
-command -v pipx > /dev/null && eval "$(register-python-argcomplete3 pipx)"
-command -v zoxide > /dev/null && eval "$(zoxide init --cmd cd bash)" 
 
-################################################################################
+# ─── Fuzzyfinder config ───────────────────────────────────────────────────────
 # Function definitions, aliases, defaults and for fzf fuzzyfinder
 # https://github.com/phiresky/ripgrep-all/wiki/fzf-Integration
 
@@ -322,18 +219,23 @@ rga-fzf() {
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git --exclude /timeshift'
 
-################################################################################
+# ─── History and zoxide hooks ─────────────────────────────────────────────────
 # history appender, for a complete history when using more than one terminal
-# declared in this special way to be compatible with the zoxide navigation package
-prompt_command_function() {
-  __zoxide_hook
-  history -a
-}
-command -v zoxide > /dev/null && export PROMPT_COMMAND=prompt_command_function
-command -v zoxide > /dev/null && export _ZO_DOCTOR=0
+command -v zoxide > /dev/null && eval "$(zoxide init --cmd cd bash)"
+command -v zoxide > /dev/null && export PROMPT_COMMAND='__zoxide_hook; history -a'
 
-# necessary export for gpg-agent invocation
+# ─── necessary export for gpg-agent invocation ────────────────────────────────
 export GPG_TTY=$(tty)
 
-# flatpak and userspaces
+# ─── flatpak and userspaces ───────────────────────────────────────────────────
 export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:$HOME/.local/share/flatpak/exports/share"
+
+# ─── python helper tools ──────────────────────────────────────────────────────
+alias xfd="uv run --project $HOME/Workspace/helper_tools $HOME/Workspace/helper_tools/format_date.py"
+alias trim='py $HOME/Workspace/helper_tools/trim_whitespaces.py'
+alias ablo='uv run --project $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser $HOME/Daten/Eckhard/Projekte/ablage-scan-organiser/main.py'
+alias dupli='uv run --project $HOME/Workspace/dupli_finder $HOME/Workspace/dupli_finder/dupli_finder.py'
+alias eezy='uv run --project $HOME/Workspace/eezy $HOME/Workspace/eezy/main.py'
+alias rewe='uv run --project $HOME/Workspace/rewe_tools $HOME/Workspace/rewe_tools/rewe_tools.py'
+alias rewedl='uv run --project $HOME/Workspace/rewe_tools $HOME/Workspace/rewe_tools/rewe_mails.py'
+alias rewedir='cd $HOME/Daten/Archiv/Familie/$(\date +%Y)/REWE'
