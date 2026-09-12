@@ -201,8 +201,6 @@ alias dk='cd ~/Dokumente'
 alias xclip='clip.exe'
 alias xpaste='pwsh.exe -NoProfile -Command "[Console]::OutputEncoding=[Text.Encoding]::UTF8; Get-Clipboard"'
 alias shutdown='shutdown.exe /s /t 0'
-alias ssh="ssh.exe"
-alias ssh-add='ssh-add.exe'
 
 # The generic open alias (xdg-open) from above must go in WSL, otherwise it would
 # shadow an 'open' executable in PATH (aliases always win over executables in
@@ -219,12 +217,9 @@ if [[ ! -f "$HOME/.local/bin/npp" ]]; then
 	}
 fi
 
-# WSL-specific exports
-export RSYNC_RSH="ssh.exe"
-
 # 1Password-SSH-Agent bridge from Windows to WSL
 if [[ -f "$HOME/.local/bin/npiperelay.exe" ]]; then
-	export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
+	export SSH_AUTH_SOCK="/run/user/$(id -u)/ssh-agent.sock"
 	if [[ ! -S "$SSH_AUTH_SOCK" ]] || ! ss -lx 2>/dev/null | grep -q "$SSH_AUTH_SOCK"; then
 		rm -f "$SSH_AUTH_SOCK"
 		(setsid socat UNIX-LISTEN:"$SSH_AUTH_SOCK",fork,umask=177 \
