@@ -126,7 +126,7 @@ alias xpaste="xclip -o"
 
 # ─── software aliases ─────────────────────────────────────────────────────────
 alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
-rgao() { rga "$@" | xargs -I {} wsl-open "{}"; }
+rgao() { rga "$@" | xargs -I {} xdg-open "{}"; }
 
 # ─── miscellaneous tools ──────────────────────────────────────────────────────
 alias t='tail -f'
