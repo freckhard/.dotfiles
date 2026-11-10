@@ -74,6 +74,7 @@ alias da='cd $HOME/Daten'
 alias dk='cd $HOME/Documents'
 alias dl='cd $HOME/Downloads'
 alias dt='cd $HOME/Desktop'
+alias ws='cd $HOME/Workspace'
 alias d='cd /vol/data'
 alias vol='cd /vol/'
 alias data='cd /vol/data'
@@ -115,6 +116,7 @@ alias ip0='hostname -I | awk "{print \$1}"'
 alias ip1='curl ifconfig.me'
 alias hostname='uname -n'
 alias uefi='sudo systemctl reboot --firmware-setup'
+alias wkill='qdbus6 org.kde.KWin /KWin org.kde.KWin.killWindow'
 
 # ─── time & date aliases ──────────────────────────────────────────────────────
 alias ncal='ncal -Mwb'
@@ -122,7 +124,8 @@ alias kw='echo "KW "$(\date +%V)'
 alias date='date "+%F | KW %V | %A | %T %z"'
 
 # ─── clipboard simplifications ────────────────────────────────────────────────
-alias xpaste="xclip -o"
+alias xpaste='xclip -o'
+[[ "$XDG_SESSION_TYPE" == wayland ]] && alias xclip='wl-copy' xpaste='wl-paste'
 
 # ─── software aliases ─────────────────────────────────────────────────────────
 alias rga='rga --rga-adapters=poppler -l 2>/dev/null'
@@ -163,11 +166,7 @@ if [[ "$(< /proc/version)" == *WSL* ]]; then
 
 	# getting rid of horribly highlighted folders in WSL
 	export LS_COLORS=$LS_COLORS:'ow=1;34:';
-
-	# The generic open and xpaste aliases from above must go in WSL, otherwise they
-	# would shadow the wrappers in PATH (aliases always win over executables in
-	# interactive shells).
-	unalias open xpaste 2>/dev/null
+	unalias open xclip xpaste 2>/dev/null
 
 fi
 
@@ -194,8 +193,8 @@ if [[ -d "$HOME/.cargo/bin" ]]; then PATH="$HOME/.cargo/bin:$PATH"; fi
 # load separate work related aliases if it exists
 if [[ -f $HOME/.work_aliases ]]; then source $HOME/.work_aliases; fi
 
-# load local nix-profile binary path if it exists
-if [[ -d "$HOME/.nix-profile/bin" ]]; then export PATH=$HOME/.nix-profile/bin:$PATH; fi
+# load machine specific related aliases if it exists
+if [[ -f $HOME/.bash_local ]]; then source $HOME/.bash_local; fi
 
 # Configure shell environment for command-line tools if they exist
 command -v vim > /dev/null && export EDITOR=vim
