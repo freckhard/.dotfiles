@@ -13,6 +13,14 @@ alias g='git'
 alias py='python3'
 alias ipy='ipython3'
 
+# ─── claude code aliases ──────────────────────────────────────────────────────
+alias cl='claude'
+alias dlc='cd $HOME/Downloads && claude'
+alias clr='claude --resume'
+alias clc='claude --continue'
+alias clrm='claude --remote-control'
+alias clrb='claude --bg --remote-control'
+
 # ─── git aliases ──────────────────────────────────────────────────────────────
 alias gs='git status -u'
 alias ga='git add'
@@ -88,8 +96,8 @@ alias ä='cd ..'
 alias cd.='cd $(realpath .)'	# Go to real dir (i.e. if current dir is linked)
 alias cwd='pwd | tr -d \\n | xclip'
 alias open='xdg-open'
-alias e='f(){ open "${1:-.}"; }; f'
-alias rp='f() { realpath "${1:-.}"; }; f'
+alias e='ƒ(){ open "${1:-.}"; }; ƒ'
+alias rp='ƒ(){ realpath "${1:-.}"; }; ƒ'
 
 # ─── edit this file ───────────────────────────────────────────────────────────
 alias bedit='vim $HOME/.bash_aliases'
@@ -141,7 +149,7 @@ alias ciso='sha256sum -c sha256sums.txt --ignore-missing && b2sum -c b2sums.txt 
 alias checkiso='sha256sum -c --ignore-missing *sha256*.txt; b2sum -c --ignore-missing *b2*.txt'
 
 # ─── get filecount including dotfiles from current or target directory ────────
-alias n='f(){ (cd "${1:-.}" && shopt -s nullglob dotglob && files=( * ) && echo "${#files[@]}"); }; f'
+alias n='ƒ(){ (cd "${1:-.}" && shopt -s nullglob dotglob && files=( * ) && echo "${#files[@]}"); }; ƒ'
 alias nl='for dir in */; do echo -n "$dir: "; fd . --hidden "$dir" | wc -l; done'
 alias wcl='wc -l'
 
